@@ -6,11 +6,22 @@ using System.Web;
 
 namespace RestaurantRater.Models
 {
+    // Because the "Restaurant" class is setup in the "RestaurantDbContext" as a model that supports a table
+        // ("DbSet<Restaurant"), we need to have a way to define what the restaurant looks like and how we
+        // identify different restaurants in the database. Every data table in a database must have a "primary key".
+        // The "primary key" is a unique identifier for each row in the table. Every table in a database is basically just
+        // a fancy excel sheet. It'll have columns and rows. Each column is defined by properties. We'll have Id, Name,
+        // Address, and Ratings columns. Each row will contain an individual "Restaurant".
     public class Restaurant
     {
+        // "EntityFramework" should know that the "Id" property is the "primary key" because it's the first property and of
+            // type integer. However, we added the "[Key]" attribute to specify it just in case. We had to do "Ctrl+." to 
+            // bring in the "using System.ComponentModel.DataAnnotations" using statement.
         [Key]
         public int Id { get; set; }
         
+        // We added the "[Required]" attribute to the "Name" and "Address" properties because we want those pieces of information
+            // to be given to us every time.
         [Required]
         public string Name { get; set; }
         
